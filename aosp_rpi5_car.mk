@@ -39,14 +39,18 @@ PRODUCT_VENDOR_PROPERTIES += \
     bluetooth.profile.csip.set_coordinator.enabled=false \
     bluetooth.profile.hap.client.enabled=false \
     bluetooth.profile.hfp.ag.enabled=false \
-    bluetooth.profile.hid.device.enabled=false \
-    bluetooth.profile.hid.host.enabled=false \
+    bluetooth.profile.hid.device.enabled=true \
+    bluetooth.profile.hid.host.enabled=true \
     bluetooth.profile.map.server.enabled=false \
     bluetooth.profile.mcp.server.enabled=false \
     bluetooth.profile.opp.enabled=false \
     bluetooth.profile.pbap.server.enabled=false \
     bluetooth.profile.sap.server.enabled=false \
     bluetooth.profile.vcp.controller.enabled=false
+
+#adb
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.adb.tcp.port=5555
 
 # Broadcast radio
 PRODUCT_PACKAGES += \
