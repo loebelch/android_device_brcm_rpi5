@@ -26,6 +26,10 @@ dtoverlay=cma,cma-320
 # I2S
 #dtparam=i2s=on
 
+# Serial console
+enable_uart=1
+dtparam=uart0=on
+
 # SPI
 #dtparam=spi=on
 
