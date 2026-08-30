@@ -188,3 +188,42 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml
+
+# ALSA utils
+PRODUCT_PACKAGES += \
+    alsactl \
+    alsaloop \
+    alsamidi \
+    alsaucm \
+    amixer \
+    aplay \
+    arecord \
+    axfer \
+    iecset
+
+# DRM utils
+PRODUCT_PACKAGES += \
+    modetest.vendor
+
+# Raspberry Pi utils
+PRODUCT_PACKAGES += \
+    dtmerge \
+    dtoverlay \
+    pinctrl \
+    vcgencmd \
+    vclog \
+    vcmailbox
+
+# TinyALSA utils
+PRODUCT_PACKAGES += \
+    tinycap2 \
+    tinymix2 \
+    tinypcminfo2 \
+    tinyplay2
+
+# V4L utils
+PRODUCT_PACKAGES += \
+    cec-ctl \
+    ir-keytable \
+    media-ctl \
+    v4l2-ctl
