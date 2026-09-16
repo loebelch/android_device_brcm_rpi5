@@ -1,0 +1,26 @@
+type gptp, domain;
+type gptp_exec, vendor_file_type, exec_type, file_type;
+init_daemon_domain(gptp)
+
+allow gptp self:capability { net_admin net_raw sys_time };
+allow gptp self:packet_socket      { create bind read write setopt getopt ioctl };
+allow gptp self:udp_socket         { create bind read write setopt getopt ioctl };
+allow gptp self:netlink_route_socket { create bind read write nlmsg_read setopt getopt };
+allow gptp self:unix_dgram_socket   { create bind connect read write setopt getopt };
+
+allow gptp ptp_device:chr_file        rw_file_perms;
+allow gptp vendor_configs_file:file   r_file_perms;
+
+# ioctls auf dem AF_INET-Hilfssocket (sk.c: SIOCETHTOOL, SIOCGIFHWADDR)
+allowxperm gptp self:udp_socket ioctl {
+    SIOCGIFINDEX SIOCGIFHWADDR SIOCETHTOOL 0x89b0 0x89b1
+};
+
+# PFLICHT: ohne diese Zeile bedeutet "allow ... packet_socket ioctl"
+# implizit ALLE ioctls und verletzt die neverallowxperm-Regeln in
+# system/sepolicy/private/domain.te (Details s. u.)
+allowxperm gptp self:packet_socket ioctl {
+    0x8933   # SIOCGIFINDEX   (raw.c -> sk_interface_index)
+    0x89b0   # SIOCSHWTSTAMP  (raw.c -> sk_timestamping_init)
+    0x89b1   # SIOCGHWTSTAMP
+};
