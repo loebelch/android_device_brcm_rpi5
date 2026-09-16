@@ -71,6 +71,17 @@ PRODUCT_PACKAGES += \
     canhaldump \
     canhalsend
 
+# gPTP / IEEE 802.1AS
+PRODUCT_PACKAGES += \
+    ptp4l \
+    phc2sys \
+    pmc \
+    phc_ctl \
+    hwstamp_ctl
+
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/car/gptp.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/gptp.cfg
+
 # Display
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/car/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
