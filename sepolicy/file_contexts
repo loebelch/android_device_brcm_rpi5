@@ -24,3 +24,8 @@
 /dev/block/sda5       u:object_r:system_block_device:s0
 /dev/block/sda6       u:object_r:system_block_device:s0
 /dev/block/sda7       u:object_r:metadata_block_device:s0
+
+# PTP
+/dev/ptp[0-9]*         u:object_r:ptp_device:s0
+/vendor/bin/ptp4l      u:object_r:gptp_exec:s0
+/vendor/bin/phc2sys    u:object_r:gptp_exec:s0
