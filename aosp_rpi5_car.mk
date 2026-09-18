@@ -82,6 +82,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/car/gptp.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/gptp.cfg
 
+# AVB / AVTP
+PRODUCT_PACKAGES += \
+    libavtp \
+    aaf-talker \
+    aaf-listener \
+    crf-talker \
+    crf-listener
+
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/avtp/init.avtp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.avtp.rc
+
 # Display
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/car/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
