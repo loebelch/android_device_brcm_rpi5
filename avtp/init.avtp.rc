@@ -1,0 +1,21 @@
+# AVB/TSN Interface-Setup, sobald das Netzwerk steht
+on property:sys.boot_completed=1
+    # SR Class A: 8000 Pakete/s, PCP 3 | SR Class B: 4000 Pakete/s, PCP 2
+    # (Qdisc-Aufbau siehe Abschnitt 9)
+    start avtp-setup
+
+service avtp-setup /vendor/bin/sh /vendor/etc/avtp/tsn-setup.sh
+    class late_start
+    user root
+    group root net_raw net_admin inet
+    capabilities NET_ADMIN NET_RAW
+    oneshot
+    disabled
+
+# Beispiel: dauerhaft laufender AAF-Listener (optional)
+service avtp-listener /vendor/bin/aaf-listener -i eth0 -d 91:e0:f0:00:fe:01 -m 50
+    class late_start
+    user root
+    group root net_raw net_admin inet
+    capabilities NET_RAW NET_ADMIN
+    disabled
