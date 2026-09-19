@@ -1,0 +1,23 @@
+type avtp_tools, domain;
+type avtp_tools_exec, vendor_file_type, exec_type, file_type;
+
+init_daemon_domain(avtp_tools)
+net_domain(avtp_tools)
+
+# AF_PACKET / SOCK_DGRAM auf ETH_P_TSN (0x22F0)
+allow avtp_tools self:packet_socket {
+    create bind connect read write setopt getopt getattr ioctl
+};
+allowxperm avtp_tools self:packet_socket ioctl { SIOCGIFINDEX SIOCGIFHWADDR };
+
+allow avtp_tools self:capability { net_raw net_admin };
+
+# Qdisc-Konfiguration via netlink (tc)
+allow avtp_tools self:netlink_route_socket {
+    create bind read write nlmsg_read nlmsg_write setopt getattr
+};
+
+# Testtools direkt aus der adb-Shell starten
+userdebug_or_eng(`
+    domain_auto_trans(shell, avtp_tools_exec, avtp_tools)
+')
