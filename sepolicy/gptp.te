@@ -5,11 +5,15 @@ init_daemon_domain(gptp)
 allow gptp self:capability { net_admin net_raw sys_time };
 allow gptp self:packet_socket      { create bind read write setopt getopt ioctl };
 allow gptp self:udp_socket         { create bind read write setopt getopt ioctl };
-allow gptp self:netlink_route_socket { create bind read write nlmsg_read setopt getopt };
+allow gptp self:netlink_route_socket { create bind read write nlmsg nlmsg_read setopt getopt };
 allow gptp self:unix_dgram_socket   { create bind connect read write setopt getopt };
 
 allow gptp ptp_device:chr_file        rw_file_perms;
 allow gptp vendor_configs_file:file   r_file_perms;
+
+# UDS-Sockets unter /dev/socket (ptp4l, phc2sys.<pid>, pmc.<pid>)
+allow gptp socket_device:dir       { search write add_name remove_name };
+allow gptp socket_device:sock_file { create write setattr unlink };
 
 # ioctls auf dem AF_INET-Hilfssocket (sk.c: SIOCETHTOOL, SIOCGIFHWADDR)
 allowxperm gptp self:udp_socket ioctl {
