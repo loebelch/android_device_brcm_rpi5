@@ -29,3 +29,12 @@
 /dev/ptp[0-9]*         u:object_r:ptp_device:s0
 /vendor/bin/ptp4l      u:object_r:gptp_exec:s0
 /vendor/bin/phc2sys    u:object_r:gptp_exec:s0
+
+# AVTP
+/vendor/bin/aaf-talker      u:object_r:avtp_tools_exec:s0
+/vendor/bin/aaf-listener    u:object_r:avtp_tools_exec:s0
+/vendor/bin/crf-talker      u:object_r:avtp_tools_exec:s0
+/vendor/bin/crf-listener    u:object_r:avtp_tools_exec:s0
+/vendor/bin/cvf-talker      u:object_r:avtp_tools_exec:s0
+/vendor/bin/cvf-listener    u:object_r:avtp_tools_exec:s0
+/vendor/etc/avtp(/.*)?      u:object_r:vendor_configs_file:s0
