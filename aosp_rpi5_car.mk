@@ -100,7 +100,9 @@ PRODUCT_PACKAGES_DEBUG += \
     crf-listener
 
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/avtp/init.avtp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.avtp.rc
+    $(DEVICE_PATH)/avtp/init.avtp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.avtp.rc \
+    $(DEVICE_PATH)/avtp/tsn-setup.sh:$(TARGET_COPY_OUT_VENDOR)/etc/avtp/tsn-setup.sh \
+    $(DEVICE_PATH)/audio/avtp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/alsa/conf.d/avtp.conf
 
 # Display
 PRODUCT_COPY_FILES += \
