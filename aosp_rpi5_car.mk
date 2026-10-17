@@ -85,6 +85,15 @@ PRODUCT_COPY_FILES += \
 # AVB / AVTP
 PRODUCT_PACKAGES += \
     libavtp \
+    aaf-talker2 \
+    aaf-dump \
+    libasound_module_pcm_aaf \
+    aplay \
+    arecord \
+    amixer
+
+# Beispiel-Tools aus libavtp, nur fuer Bring-up
+PRODUCT_PACKAGES_DEBUG += \
     aaf-talker \
     aaf-listener \
     crf-talker \
