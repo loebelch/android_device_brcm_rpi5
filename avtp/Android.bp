@@ -1,0 +1,5 @@
+sh_binary {
+    name: "tsn-setup.sh",
+    src: "tsn-setup.sh",
+    vendor: true,          // -> /vendor/bin/tsn-setup.sh, 0755
+}
