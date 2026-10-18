@@ -1,4 +1,12 @@
+# AVB/TSN Interface-Setup, sobald das Netzwerk steht
 on property:sys.boot_completed=1
+    # SR Class A: 8000 Pakete/s, PCP 3 | SR Class B: 4000 Pakete/s, PCP 2
+    # (Qdisc-Aufbau siehe Abschnitt 13)
+    #
+    # Modul hier laden, nicht im Skript: "insmod" ist ein init-Builtin und
+    # laeuft mit allen Capabilities. Ein Service mit "capabilities"-Zeile hat
+    # kein CAP_SYS_MODULE -> "Failed to insmod: Operation not permitted".
+    insmod /vendor/lib/modules/8021q.ko
     start avtp-setup
 
 service avtp-setup /vendor/bin/tsn-setup.sh
@@ -9,7 +17,7 @@ service avtp-setup /vendor/bin/tsn-setup.sh
     oneshot
     disabled
 
-# Optional: dauerhaft laufender Listener
+# Beispiel: dauerhaft laufender AAF-Listener (optional)
 #service avtp-listener /vendor/bin/aaf-dump -i eth0 -d 91:e0:f0:00:fe:01 -m 50
 #    class late_start
 #    user root
