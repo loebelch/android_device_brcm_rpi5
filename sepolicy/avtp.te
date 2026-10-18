@@ -17,6 +17,13 @@ allow avtp_tools self:netlink_route_socket {
     create bind read write nlmsg nlmsg_read nlmsg_write setopt getattr
 };
 
+# Setup-Skript ruft modprobe/ls/tc/ip (toolbox-Symlinks).
+# Gemessen auf permissivem Boot, nicht geraten.
+allow avtp_tools vendor_toolbox_exec:file execute_no_trans;
+allow avtp_tools proc_cmdline:file r_file_perms;
+allow avtp_tools sysfs_net:dir search;
+allow avtp_tools sysfs_net:file r_file_perms;
+
 # Testtools direkt aus der adb-Shell starten
 userdebug_or_eng(`
     domain_auto_trans(shell, avtp_tools_exec, avtp_tools)
