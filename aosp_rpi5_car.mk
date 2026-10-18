@@ -87,6 +87,7 @@ PRODUCT_PACKAGES += \
     libavtp \
     aaf-talker2 \
     libasound_module_pcm_aaf \
+    tsn-setup.sh \
     aplay \
     arecord \
     amixer
@@ -100,7 +101,6 @@ PRODUCT_PACKAGES_DEBUG += \
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/avtp/init.avtp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.avtp.rc \
-    $(DEVICE_PATH)/avtp/tsn-setup.sh:$(TARGET_COPY_OUT_VENDOR)/etc/avtp/tsn-setup.sh \
     $(DEVICE_PATH)/audio/avtp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/alsa/conf.d/avtp.conf
 
 # Display
