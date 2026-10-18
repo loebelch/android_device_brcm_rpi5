@@ -14,7 +14,7 @@ allow avtp_tools self:capability { net_raw net_admin };
 
 # Qdisc-Konfiguration via netlink (tc)
 allow avtp_tools self:netlink_route_socket {
-    create bind read write nlmsg_read nlmsg_write setopt getattr
+    create bind read write nlmsg nlmsg_read nlmsg_write setopt getattr
 };
 
 # Testtools direkt aus der adb-Shell starten
