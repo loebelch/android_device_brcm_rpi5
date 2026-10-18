@@ -32,10 +32,14 @@
 
 # AVTP
 /vendor/bin/aaf-talker      u:object_r:avtp_tools_exec:s0
+/vendor/bin/aaf-talker2     u:object_r:avtp_tools_exec:s0
 /vendor/bin/aaf-listener    u:object_r:avtp_tools_exec:s0
+/vendor/bin/aaf-dump        u:object_r:avtp_tools_exec:s0
 /vendor/bin/crf-talker      u:object_r:avtp_tools_exec:s0
 /vendor/bin/crf-listener    u:object_r:avtp_tools_exec:s0
 /vendor/bin/cvf-talker      u:object_r:avtp_tools_exec:s0
 /vendor/bin/cvf-listener    u:object_r:avtp_tools_exec:s0
+# /vendor/etc/avtp nur noetig, falls dort Konfigurationsdateien liegen;
+# das Setup-Skript liegt in /vendor/bin (Kapitel 11)
 /vendor/etc/avtp(/.*)?      u:object_r:vendor_configs_file:s0
-/vendor/bin/tsn-setup\.sh    u:object_r:avtp_tools_exec:s0
+/vendor/bin/tsn-setup\.sh   u:object_r:avtp_tools_exec:s0
