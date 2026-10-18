@@ -38,3 +38,4 @@
 /vendor/bin/cvf-talker      u:object_r:avtp_tools_exec:s0
 /vendor/bin/cvf-listener    u:object_r:avtp_tools_exec:s0
 /vendor/etc/avtp(/.*)?      u:object_r:vendor_configs_file:s0
+/vendor/bin/tsn-setup\.sh    u:object_r:avtp_tools_exec:s0
