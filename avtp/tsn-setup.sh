@@ -1,12 +1,17 @@
 #!/vendor/bin/sh
+# als init-Service ist stdout/stderr sonst /dev/null
+exec 1>/dev/kmsg 2>&1
+
 IFACE=eth0
 VID=2
 
-# VLAN nur, wenn der Switch getaggte Frames erwartet - braucht 8021q.ko
-modprobe -d /vendor/lib/modules 8021q 2>/dev/null
+modprobe -d /vendor/lib/modules 8021q
 
-ip link add link $IFACE name ${IFACE}.$VID type vlan id $VID \
-    egress-qos-map 0:0 3:3 2:2
+# idempotent: zweiter Lauf scheitert sonst mit "File exists"
+if [ ! -d /sys/class/net/${IFACE}.${VID} ]; then
+    ip link add link $IFACE name ${IFACE}.$VID type vlan id $VID \
+        egress-qos-map 0:0 3:3 2:2
+fi
 ip link set ${IFACE}.$VID up
 
-ls /sys/class/net/$IFACE/queues/      # mqprio/CBS brauchen mehrere Queues
+echo "tsn-setup: TX-Queues =" $(ls -d /sys/class/net/$IFACE/queues/tx-* | wc -l)
