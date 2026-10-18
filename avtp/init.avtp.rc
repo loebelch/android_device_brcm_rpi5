@@ -1,7 +1,7 @@
 on property:sys.boot_completed=1
     start avtp-setup
 
-service avtp-setup /vendor/bin/sh /vendor/etc/avtp/tsn-setup.sh
+service avtp-setup /vendor/bin/tsn-setup.sh
     class late_start
     user root
     group root net_raw net_admin inet
